@@ -17,4 +17,4 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route :: resource ('Categoria','App\Http\Controllers\CategoriaController');
+Route :: resource ('categoria','App\Http\Controllers\CategoriaController');

@@ -10,7 +10,7 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Symfony\Component\VarDumper\Caster\RedisCaster;
 
 class CategoriaController extends Controller
-{
+{ 
     /**
      * Display a listing of the resource.
      *
@@ -21,8 +21,8 @@ class CategoriaController extends Controller
         if ($request) {
             $sql = trim($request->get('buscarTexto'));
             $categoria = DB::table('categoria')->where('Nombre','LIKE','%'.$sql.'%')->orderBy('IdCategoria','desc')->paginate(3);
-            // return view('categoria.index',["categoria"=>$categoria,"buscarTexto"=>$sql]);
-            return $categoria;
+            return view('categoria.listar',["categoria"=>$categoria,"buscarTexto"=>$sql]);
+            // return $categoria;
         }
     }
 
@@ -42,7 +42,7 @@ class CategoriaController extends Controller
         $categoria->Condicion= '1';
         $categoria->save();
         
-        return redirect::to('Categoria');
+        return redirect::to('categoria');
 
     }
     /**
@@ -59,7 +59,7 @@ class CategoriaController extends Controller
         $categoria->Descripcion= $request->descripcion;
         $categoria->Condicion= '1';
         $categoria->save();
-        return redirect::to('Categoria');
+        return redirect::to('categoria');
 
     }
 
