@@ -69,6 +69,8 @@
                                             <button type="button" class="btn btn-danger btn-sm">
                                                 <i class="fa fa-lock fa-2x"></i> Desactivar
                                             </button>
+                                            <a href="{{route('descargarPDF')}}" class="btn btn-md btn-success">PDF</a>
+                                            <a href="{{route('descargarPDFcategoria')}}" class="btn btn-md btn-danger">Lista PDF</a>
                                            
                                         </td>
                                     </tr>

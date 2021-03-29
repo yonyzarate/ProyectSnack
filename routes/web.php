@@ -18,3 +18,5 @@ Route::get('/', function () {
 });
 
 Route :: resource ('categoria','App\Http\Controllers\CategoriaController');
+Route :: get('/pdf','App\Http\Controllers\PDF_Controller@PDF')->name('descargarPDF');
+Route :: get('/pdfcategoria','App\Http\Controllers\PDF_Controller@pdfcategoria')->name('descargarPDFcategoria');

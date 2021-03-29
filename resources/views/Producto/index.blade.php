@@ -1,0 +1,1 @@
+Este  es el index de la vista de productos 

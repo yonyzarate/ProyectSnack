@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use istudy\Http\Requests;
 use app\Models\Categoria;
+use exception;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\Container\BindingResolutionException;
@@ -24,6 +24,7 @@ class CategoriaController extends Controller
             $categoria = DB::table('categoria')->where('Nombre','LIKE','%'.$sql.'%')->orderBy('IdCategoria','desc')->paginate(3);
             return view('categoria.listar',["categoria"=>$categoria,"buscarTexto"=>$sql]);
             // return $categoria;
+            throw new exception("error",1);
         }
     }
 
@@ -35,9 +36,10 @@ class CategoriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    
     public function store(Request $request)
     {
-        $categoria = new Categoria();
+        $categoria = new Categoria;
         $categoria->Nombre= $request->nombre;
         $categoria->Descripcion= $request->descripcion;
         $categoria->Condicion= '1';
