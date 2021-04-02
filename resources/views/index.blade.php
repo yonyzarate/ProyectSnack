@@ -82,5 +82,19 @@
     <!-- Genesis'I assetmain scripts -->
     <script src="{{asset('js/template.js')}}"></script>
 </body>
+<script>
+    $('#abrirmodalEditar').on('show.bs.modal',function(event){
+
+        var button = $(event.relatedTarget)
+        var tcnombre = button.data('nombre')
+        var tcdescripcion = button.data('descripcion')
+        var tnid_categoria = button.data('id_categoria')
+        var modal = $(this)
+        modal.find('.modal-body #nombre').val(tcnombre);
+        modal.find('.modal-body #descripcion').val(tcdescripcion);
+        modal.find('.modal-body #id_categoria').val(tnid_categoria);
+    })
+
+</script>
 
 </html>

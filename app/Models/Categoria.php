@@ -10,8 +10,10 @@ use Illuminate\Support\Facades\Schema;
 class Categoria extends Model
 {
     use HasFactory;
-   
+
+    
     protected $table = 'categoria';
+    protected $primaryKey = 'IdCategoria';
 
     protected $fillable = ['Nombre','Descripcion','Condicion'];
 }

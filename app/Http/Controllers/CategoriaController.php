@@ -20,9 +20,9 @@ class CategoriaController extends Controller
     public function index(Request $request)
     {
         if ($request) {
-            $sql = trim($request->get('buscarTexto'));
-            $categoria = DB::table('categoria')->where('Nombre','LIKE','%'.$sql.'%')->orderBy('IdCategoria','desc')->paginate(3);
-            return view('categoria.listar',["categoria"=>$categoria,"buscarTexto"=>$sql]);
+            $tcsql = trim($request->get('buscarTexto'));
+            $ocategoria = DB::table('categoria')->where('Nombre','LIKE','%'.$tcsql.'%')->orderBy('IdCategoria','desc')->paginate(3);
+            return view('categoria.listar',["categoria"=>$ocategoria,"buscarTexto"=>$tcsql]);
             // return $categoria;
             throw new exception("error",1);
         }
@@ -39,11 +39,11 @@ class CategoriaController extends Controller
     
     public function store(Request $request)
     {
-        $categoria = new Categoria;
-        $categoria->Nombre= $request->nombre;
-        $categoria->Descripcion= $request->descripcion;
-        $categoria->Condicion= '1';
-        $categoria->save();
+        $ocategoria = new Categoria;
+        $ocategoria->Nombre= $request->nombre;
+        $ocategoria->Descripcion= $request->descripcion;
+        $ocategoria->Condicion= '1';
+        $ocategoria->save();
         
         return redirect::to('categoria');
 
@@ -57,11 +57,11 @@ class CategoriaController extends Controller
      */
     public function update(Request $request)
     {
-        $categoria = Categoria::findOrFail($request->id_categoria);
-        $categoria->Nombre= $request->nombre;
-        $categoria->Descripcion= $request->descripcion;
-        $categoria->Condicion= '1';
-        $categoria->save();
+        $ocategoria = Categoria::findOrFail($request->id_categoria);
+        $ocategoria->Nombre= $request->nombre;
+        $ocategoria->Descripcion= $request->descripcion;
+        $ocategoria->Condicion= '1';
+        $ocategoria->save();
         return redirect::to('categoria');
 
     }
@@ -75,17 +75,17 @@ class CategoriaController extends Controller
     public function destroy(Request $request)
     {
         //
-        $categoria = Categoria::findOrFail($request->id_categoria);
+        $ocategoria = Categoria::findOrFail($request->id_categoria);
 
-        if($categoria->Condicion=='1'){
+        if($ocategoria->Condicion=='1'){
             
-            $categoria->Condicion='0';
-            $categoria->save();
-            return redirect::to('Categoria');
+            $ocategoria->Condicion='0';
+            $ocategoria->save();
+            return redirect::to('categoria');
         }else{
-            $categoria->Condicion='1';
-            $categoria->save();
-            return redirect::to('Categoria');
+            $ocategoria->Condicion='1';
+            $ocategoria->save();
+            return redirect::to('categoria');
         }
 
     }
