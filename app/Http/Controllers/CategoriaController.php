@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app\Models\Categoria;
+use App\Models\Categoria;
 use exception;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
