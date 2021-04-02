@@ -83,6 +83,7 @@
     <script src="{{asset('js/template.js')}}"></script>
 </body>
 <script>
+//  EDITAR CATEGORIA EN VENTANA MODAL
     $('#abrirmodalEditar').on('show.bs.modal',function(event){
 
         var button = $(event.relatedTarget)
@@ -94,6 +95,14 @@
         modal.find('.modal-body #descripcion').val(tcdescripcion);
         modal.find('.modal-body #id_categoria').val(tnid_categoria);
     })
+    // CAMBIAR ESTADO EN VENTANA MODAL
+    $('#cambiarestado').on('show.bs.modal',function(event){
+
+        var button = $(event.relatedTarget)
+        var tnid_categoria = button.data('id_categoria')
+        var modal = $(this)
+        modal.find('.modal-body #id_categoria').val(tnid_categoria);
+        })
 
 </script>
 

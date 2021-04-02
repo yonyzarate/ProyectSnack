@@ -49,10 +49,17 @@
                                         <td>{{$ocate->Nombre}}</td>
                                         <td>{{$ocate->Descripcion}}</td>
                                         <td>
-                                            <button type="button" class="btn btn-success btn-md">
-                                        
-                                              <i class="fa fa-check fa-2x"></i> Activo
-                                            </button>
+                                            @if($ocate->Condicion == "1") 
+                                                <button type="button" class="btn btn-success btn-md">
+
+                                                  <i class="fa fa-check fa-2x"></i> Activo
+                                                </button>
+                                            @else
+                                                <button type="button" class="btn btn-danger btn-md">
+
+                                                  <i class="fa fa-check fa-2x"></i> Desactivado
+                                                </button>
+                                            @endif    
                                            
                                         </td>
     
@@ -69,13 +76,21 @@
     
                                         <td>
     
-                                            
-                                            <button type="button" class="btn btn-danger btn-sm">
-                                                <i class="fa fa-lock fa-2x"></i> Desactivar
-                                            </button>
-                                            <a href="{{route('descargarPDF')}}" class="btn btn-md btn-success">PDF</a>
-                                            <a href="{{route('descargarPDFcategoria')}}" class="btn btn-md btn-danger">Lista PDF</a>
-                                           
+                                            @if($ocate->Condicion)
+                                                <button type="button" class="btn btn-danger btn-sm"
+                                                data-toggle="modal" data-id_categoria="{{$ocate->IdCategoria}}" data-target="#cambiarestado">
+                                                    <i class="fa fa-lock fa-2x"></i> Desactivar
+                                                </button>
+                                                <a href="{{route('descargarPDF')}}" class="btn btn-md btn-success">PDF</a>
+                                                <a href="{{route('descargarPDFcategoria')}}" class="btn btn-md btn-danger">Lista PDF</a>
+                                           @else
+                                                <button type="button" class="btn btn-success btn-sm"
+                                                 data-toggle="modal" data-id_categoria="{{$ocate->IdCategoria}}" data-target="#cambiarestado">
+                                                     <i class="fa fa-lock fa-2x"></i> Activar
+                                                 </button>
+                                                 <a href="{{route('descargarPDF')}}" class="btn btn-md btn-success">PDF</a>
+                                                 <a href="{{route('descargarPDFcategoria')}}" class="btn btn-md btn-danger">Lista PDF</a>
+                                            @endif
                                         </td>
                                     </tr>
                                @endforeach
@@ -142,6 +157,47 @@
 
                                 <input type="hidden" name="id_categoria" id="id_categoria" value="">
                                 @include('categoria.form')
+
+                            </form>
+                        </div>
+                        
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!--Fin del modal-->
+
+            <!--Cambiar estado-->
+           <div class="modal fade" id="cambiarestado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-primary modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Cambiar Estado de Categoría</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                       
+                        <div class="modal-body">
+                            
+                           
+                             
+
+                            <form action="{{route('categoria.destroy','test')}}" method="post"  class="form-horizontal">
+                                
+                                {{method_field('delete')}}
+                                {{csrf_field()}}
+
+                                <input type="hidden" name="id_categoria" id="id_categoria" value="">
+
+                                <p>Estas seguro de cambiar el estado?</p>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-2x"></i> Cerrar</button>
+                                    <button type="submit" class="btn btn-success"><i class="fa fa-save fa-2x"></i> Guardar</button>
+                                
+                                </div>
 
                             </form>
                         </div>
