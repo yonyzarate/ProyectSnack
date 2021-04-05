@@ -103,6 +103,23 @@
         var modal = $(this)
         modal.find('.modal-body #id_categoria').val(tnid_categoria);
         })
+        // EDITAR PRODUCTO EN VENTANA MODAL
+        $('#abrirmodalEditar').on('show.bs.modal',function(event){
+
+        var button = $(event.relatedTarget)
+        var tccodigo = button.data('codigo')
+        var tcnombre = button.data('nombre')
+        var tcprecioventa = button.data('precioventa')
+        var tcstock = button.data('stock')
+        var tnid_producto = button.data('id_producto')
+        var tccategoria = button.data('categoria')
+        var modal = $(this)
+        modal.find('.modal-body #codigo').val(tccodigo);
+        modal.find('.modal-body #nombre').val(tcnombre);
+        modal.find('.modal-body #precioventa').val(tcprecioventa);
+        modal.find('.modal-body #stock').val(tcstock);
+        modal.find('.modal-body #categoria').val(tccategoria);
+        })
 
 </script>
 

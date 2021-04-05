@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Productos;
 use Illuminate\Http\Request;
+use exception;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 
 class ProductosController extends Controller
 {
@@ -12,20 +15,31 @@ class ProductosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request) {
+            // buscador de texto nombre de producto o codigo
+            $tcsql = trim($request->get('buscarTexto'));
+            //listar la lista de productos 
+            $oproducto = DB::table('productos as pro')
+            ->join('categoria as cat','pro.IdCategoria','=','cat.IdCategoria')
+            ->select('pro.Producto_Id','pro.Pro_Codigo','pro.IdCategoria','pro.Pro_Nombre','pro.Pro_PrecioVenta','pro.Pro_Stock','pro.Pro_Condicion','cat.Nombre as Categoria')
+            ->where('pro.Pro_Nombre','LIKE','%'.$tcsql.'%')
+            ->orwhere('pro.Pro_Codigo','LIKE','%'.$tcsql.'%')
+            ->orderBy('pro.Producto_Id','desc')
+            ->paginate(3);
+
+            // listar las categorias en una ventana model 
+            $ocategoria = DB::table('categoria')
+            ->select('IdCategoria','Nombre','Descripcion')
+            ->where('Condicion','=','1')->get();
+
+            return view('Producto.listarproducto',["categorias"=>$ocategoria,"productos"=>$oproducto,"buscarTexto"=>$tcsql]);
+            // return $oproducto;
+            throw new exception("error",1);
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,31 +49,19 @@ class ProductosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $oproducto = new Productos;
+        $oproducto->Pro_Codigo= $request->codigo;
+        $oproducto->Pro_Nombre= $request->nombre;
+        $oproducto->Pro_PrecioVenta= $request->precioventa;
+        $oproducto->Pro_Stock= $request->stock;
+        $oproducto->Pro_Condicion= '1';
+        $oproducto->IdCategoria= $request->categoria;
+        $oproducto->save();
+        
+        return redirect::to('producto');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Productos  $productos
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Productos $productos)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Productos  $productos
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Productos $productos)
-    {
-        //
-    }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -67,9 +69,17 @@ class ProductosController extends Controller
      * @param  \App\Models\Productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Productos $productos)
+    public function update(Request $request)
     {
-        //
+        echo $oproducto = Productos::findOrFail($request->id_producto);
+        echo $oproducto->Pro_Codigo= $request->codigo;
+        echo $oproducto->Pro_Nombre= $request->nombre;
+        echo $oproducto->Pro_PrecioVenta= $request->precioventa;
+        echo $oproducto->Pro_Stock= $request->stock;
+        echo $oproducto->Condicion= '1';
+        echo $oproducto->IdCategoria= $request->categoria;
+        // $oproducto->save();
+        // return redirect::to('producto');
     }
 
     /**
