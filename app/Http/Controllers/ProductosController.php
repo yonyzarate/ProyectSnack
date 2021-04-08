@@ -89,8 +89,19 @@ class ProductosController extends Controller
      * @param  \App\Models\Productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Productos $productos)
+    public function destroy(Request $request)
     {
-        //
+        //)
+        $oproducto = Productos::findOrFail($request->id_producto);
+        if ($oproducto->Pro_Condicion == '1') {
+            $oproducto->Pro_Condicion = '0';
+            $oproducto->save();
+            return redirect::to('producto');
+        }else
+        {
+            $oproducto->Pro_Condicion = '1';
+            $oproducto->save();
+            return redirect::to('producto');
+        }
     }
 }

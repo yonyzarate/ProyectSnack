@@ -95,7 +95,7 @@
         modal.find('.modal-body #descripcion').val(tcdescripcion);
         modal.find('.modal-body #id_categoria').val(tnid_categoria);
     })
-    // CAMBIAR ESTADO EN VENTANA MODAL
+    // CAMBIAR ESTADO EN VENTANA MODAL DE CATEGORIA
     $('#cambiarestado').on('show.bs.modal',function(event){
 
         var button = $(event.relatedTarget)
@@ -122,6 +122,14 @@
         modal.find('.modal-body #id_producto').val(tnid_producto);
         })
 
+        // CAMBIAR ESTADO EN VENTANA MODAL DE PRODUCTO
+        $('#procambiarestado').on('show.bs.modal',function(event){
+        
+        var button = $(event.relatedTarget)
+        var tnid_producto = button.data('id_producto')
+        var modal = $(this)
+        modal.find('.modal-body #id_producto').val(tnid_producto);
+        })
 </script>
 
 </html>

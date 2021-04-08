@@ -87,13 +87,13 @@
     
                                             @if ($opro->Pro_Condicion)
                                                 <button type="button" class="btn btn-danger btn-sm"
-                                                data-toggle="modal" data-id_categoria="{{$opro->Producto_Id}}" data-target="#cambiarestado">
+                                                data-toggle="modal" data-id_producto="{{$opro->Producto_Id}}" data-target="#procambiarestado">
                                                     <i class="fa fa-lock fa-2x"></i> Desactivar
                                                 </button>
                                                 
                                            @else
                                                 <button type="button" class="btn btn-success btn-sm"
-                                                 data-toggle="modal" data-id_categoria="{{$opro->Producto_Id}}" data-target="#cambiarestado">
+                                                 data-toggle="modal" data-id_producto="{{$opro->Producto_Id}}" data-target="#procambiarestado">
                                                      <i class="fa fa-lock fa-2x"></i> Activar
                                                  </button>
                                             @endif     
@@ -176,11 +176,11 @@
             <!--Fin del modal-->
 
             <!--Cambiar estado-->
-           <div class="modal fade" id="cambiarestado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+           <div class="modal fade" id="procambiarestado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog modal-primary modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">Cambiar Estado de Categoría</h4>
+                            <h4 class="modal-title">Cambiar Estado de Producto</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">×</span>
                             </button>
@@ -191,12 +191,12 @@
                            
                              
 
-                            <form action="{{route('categoria.destroy','test')}}" method="post"  class="form-horizontal">
+                            <form action="{{route('producto.destroy','test')}}" method="post"  class="form-horizontal">
                                 
                                 {{method_field('delete')}}
                                 {{csrf_field()}}
 
-                                <input type="hidden" name="id_categoria" id="id_categoria" value="">
+                                <input type="hidden" name="id_producto" id="id_producto" value="">
 
                                 <p>Estas seguro de cambiar el estado?</p>
 
