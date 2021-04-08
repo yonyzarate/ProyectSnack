@@ -77,7 +77,7 @@
                                             data-precioventa ="{{$opro->Pro_PrecioVenta}}"
                                             data-stock ="{{$opro->Pro_Stock}}"
                                             data-categoria ="{{$opro->IdCategoria}}"
-                                             data-toggle="modal" data-target="#abrirmodalEditar">
+                                             data-toggle="modal" data-target="#proabrirmodalEditar">
     
                                               <i class="fa fa-edit fa-2x"></i> Editar
                                             </button> &nbsp;
@@ -142,7 +142,7 @@
            
 
            <!--Inicio del modal Editar-->
-           <div class="modal fade" id="abrirmodalEditar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+           <div class="modal fade" id="proabrirmodalEditar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog modal-primary modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -157,7 +157,7 @@
                            
                              
 
-                            <form action="{{route('producto.update','test')}}" method="post"  class="form-horizontal">
+                            <form action="{{route('producto.update','test')}}" method="post" class="form-horizontal" >
                                 
                                 {{method_field('patch')}}
                                 {{csrf_field()}}

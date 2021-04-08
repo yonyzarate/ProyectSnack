@@ -71,13 +71,14 @@ class ProductosController extends Controller
      */
     public function update(Request $request)
     {
-        echo $oproducto = Productos::findOrFail($request->id_producto);
+        // echo ("hola mundo");
+         $oproducto = Productos::findOrFail($request->id_producto);
         echo $oproducto->Pro_Codigo= $request->codigo;
-        echo $oproducto->Pro_Nombre= $request->nombre;
-        echo $oproducto->Pro_PrecioVenta= $request->precioventa;
-        echo $oproducto->Pro_Stock= $request->stock;
-        echo $oproducto->Condicion= '1';
-        echo $oproducto->IdCategoria= $request->categoria;
+        // echo $oproducto->Pro_Nombre= $request->nombre;
+        // echo $oproducto->Pro_PrecioVenta= $request->precioventa;
+        // echo $oproducto->Pro_Stock= $request->stock;
+        // echo $oproducto->Condicion= '1';
+        // echo $oproducto->IdCategoria= $request->categoria;
         // $oproducto->save();
         // return redirect::to('producto');
     }

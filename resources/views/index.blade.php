@@ -104,7 +104,7 @@
         modal.find('.modal-body #id_categoria').val(tnid_categoria);
         })
         // EDITAR PRODUCTO EN VENTANA MODAL
-        $('#abrirmodalEditar').on('show.bs.modal',function(event){
+        $('#proabrirmodalEditar').on('show.bs.modal',function(event){
 
         var button = $(event.relatedTarget)
         var tccodigo = button.data('codigo')
@@ -119,6 +119,7 @@
         modal.find('.modal-body #precioventa').val(tcprecioventa);
         modal.find('.modal-body #stock').val(tcstock);
         modal.find('.modal-body #categoria').val(tccategoria);
+        modal.find('.modal-body #id_producto').val(tnid_producto);
         })
 
 </script>
