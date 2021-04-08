@@ -58,11 +58,11 @@ class CategoriaController extends Controller
     public function update(Request $request)
     {
         $ocategoria = Categoria::findOrFail($request->id_categoria);
-        // echo $ocategoria->Nombre= $request->nombre;
-        // echo $ocategoria->Descripcion= $request->descripcion;
-        // echo $ocategoria->Condicion= '1';
-        // $ocategoria->save();
-        // return redirect::to('categoria');
+        echo $ocategoria->Nombre= $request->nombre;
+        echo $ocategoria->Descripcion= $request->descripcion;
+        echo $ocategoria->Condicion= '1';
+        $ocategoria->save();
+        return redirect::to('categoria');
 
     }
 

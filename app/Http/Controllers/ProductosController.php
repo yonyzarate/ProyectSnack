@@ -63,7 +63,7 @@ class ProductosController extends Controller
 
     
     /**
-     * Update the specified resource in storage.
+     * Actualizar producto .
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Productos  $productos
@@ -73,14 +73,14 @@ class ProductosController extends Controller
     {
         // echo ("hola mundo");
          $oproducto = Productos::findOrFail($request->id_producto);
-        echo $oproducto->Pro_Codigo= $request->codigo;
-        // echo $oproducto->Pro_Nombre= $request->nombre;
-        // echo $oproducto->Pro_PrecioVenta= $request->precioventa;
-        // echo $oproducto->Pro_Stock= $request->stock;
-        // echo $oproducto->Condicion= '1';
-        // echo $oproducto->IdCategoria= $request->categoria;
-        // $oproducto->save();
-        // return redirect::to('producto');
+         $oproducto->Pro_Codigo= $request->codigo;
+         $oproducto->Pro_Nombre= $request->nombre;
+         $oproducto->Pro_PrecioVenta= $request->precioventa;
+         $oproducto->Pro_Stock= $request->stock;
+         $oproducto->Pro_Condicion= '1';
+         $oproducto->IdCategoria= $request->categoria;
+        $oproducto->save();
+        return redirect::to('producto');
     }
 
     /**
